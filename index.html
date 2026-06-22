@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Cannon Duel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- ===== HOME ===== -->
+    <section id="screen-home" class="screen active">
+      <div class="home-inner">
+        <h1 class="game-title">CANNON<span>DUEL</span></h1>
+        <p class="tagline">Aim. Charge. Fire. Last tank standing wins.</p>
+        <button id="btn-play" class="big-btn">PLAY</button>
+      </div>
+    </section>
+
+    <!-- ===== MODE SELECT ===== -->
+    <section id="screen-mode" class="screen">
+      <div class="mode-inner">
+        <h2 class="screen-heading">Choose a battle</h2>
+
+        <button id="btn-friend" class="mode-card">
+          <span class="mode-icon">👥</span>
+          <span class="mode-label">Play with a friend</span>
+          <span class="mode-sub">Pass &amp; play on one device</span>
+        </button>
+
+        <button id="btn-bot" class="mode-card">
+          <span class="mode-icon">🤖</span>
+          <span class="mode-label">Play vs bot</span>
+          <span class="mode-sub">Pick a difficulty</span>
+        </button>
+
+        <div id="difficulty-row" class="difficulty-row">
+          <button class="diff-btn" data-diff="easy">Easy</button>
+          <button class="diff-btn" data-diff="medium">Medium</button>
+          <button class="diff-btn" data-diff="hard">Hard</button>
+        </div>
+
+        <button id="btn-mode-back" class="text-btn">‹ Back</button>
+      </div>
+    </section>
+
+    <!-- ===== BATTLE ===== -->
+    <section id="screen-battle" class="screen">
+      <canvas id="game-canvas"></canvas>
+
+      <!-- top HUD -->
+      <div id="hud-top">
+        <div class="hp-block">
+          <div class="hp-name orange">Orange</div>
+          <div class="hp-pips" id="hp-orange"></div>
+        </div>
+        <div id="turn-banner">Orange's turn</div>
+        <div class="hp-block right">
+          <div class="hp-name blue" id="blue-name">Blue</div>
+          <div class="hp-pips" id="hp-blue"></div>
+        </div>
+        <button id="btn-menu" aria-label="Menu">≡</button>
+      </div>
+
+      <!-- bot thinking banner -->
+      <div id="bot-banner" class="hidden">Bot is aiming…</div>
+
+      <!-- bullet panel (turn start) -->
+      <div id="panel-bullet" class="bottom-panel hidden">
+        <div class="bullet-card">
+          <span id="bullet-emoji" class="bullet-emoji">🚀</span>
+          <div class="bullet-text">
+            <div id="bullet-name" class="bullet-name">Small rocket</div>
+            <div id="bullet-desc" class="bullet-desc">Fast and flat</div>
+          </div>
+        </div>
+        <button id="btn-accept" class="accept-btn">Accept</button>
+      </div>
+
+      <!-- aim panel -->
+      <div id="panel-aim" class="bottom-panel hidden">
+        <div class="aim-row">
+          <span class="aim-label">Angle</span>
+          <input id="angle-slider" type="range" min="0" max="100" value="50" />
+          <span id="angle-readout" class="angle-readout">45°</span>
+        </div>
+        <div class="power-wrap">
+          <div class="power-bar">
+            <div id="power-marker" class="power-marker"></div>
+          </div>
+          <div class="power-labels"><span>weak</span><span>strong</span></div>
+        </div>
+        <button id="btn-fire" class="fire-btn">🔥 FIRE</button>
+      </div>
+    </section>
+
+    <!-- ===== GAME OVER ===== -->
+    <section id="screen-gameover" class="screen">
+      <div class="over-inner">
+        <h2 id="winner-text" class="winner-text">Orange wins!</h2>
+        <div class="over-btns">
+          <button id="btn-retry" class="big-btn">Rematch</button>
+          <button id="btn-home" class="text-btn">Home</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- rotate hint -->
+    <div id="rotate-hint">
+      <div class="rotate-icon">📱↻</div>
+      <p>Turn your device sideways to play</p>
+    </div>
+
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
